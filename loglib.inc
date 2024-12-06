@@ -64,7 +64,7 @@ class Log {
         if ($log->getType() == 'file') {
             $file = fopen($log->getFilename(), 'a');
             fwrite ($file, $out . "\r\n");
-        } else  if ($log->getType == 'html') {
+        } else  if ($log->getType() == 'html') {
             print (nl2br($out . "\r\n"));
         } else if ($log->getType() == 'stdout') {
             printf ("%s\r\n", $out);

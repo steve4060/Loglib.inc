@@ -32,7 +32,7 @@ Logtypes are the diverent levels of the loging libary, curently there are he fol
 
 ## Logtype constructor
 ```code php
-$log = ew Logtype (type, filename);
+$log = new Logtype (type, filename);
 ```
 
 ### tyes
