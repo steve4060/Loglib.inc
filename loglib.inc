@@ -63,7 +63,7 @@ class Log {
         $out = date('H:i:s'). ' ' . self::makeMasage($string, $type);
         if ($log->getType() == 'file') {
             $file = fopen($log->getFilename(), 'a');
-            fwrite ($file, $out);
+            fwrite ($file, $out . "\r\n");
         } else  if ($log->getType == 'html') {
             print (nl2br($out . "\r\n"));
         } else if ($log->getType() == 'stdout') {
