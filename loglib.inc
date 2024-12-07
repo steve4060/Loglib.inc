@@ -2,10 +2,12 @@
 class Logtype{
     private $type;
     private $filename;
+    private $time;
 
-    public function __construct ($type = 'file', $filename = 'out.log')
+    public function __construct ($type = 'file', $time = true, $filename = 'out.log')
     {
         $this->type = $type;
+        $this->time = $time;
         $this->filename = $filename;
     }
 
@@ -30,13 +32,28 @@ class Logtype{
     {
         return $this->filename;
     }
+
+    function setTime($time): void
+    {
+        $this->time = $time;
+        return;
+    }
+
+    public function getTime(): bool
+    {
+        return $this->time;
+    }
 }
 
 class Log {
     public static function initLoging($log)
     {
         global $txt;
-        $txt = '---- ' . date('Y/m/d') . ' ' . date('H:i:s') . " ----\r\n";
+        if ($log->getTime ()) {
+            $txt = '---- ' . date('Y/m/d') . ' ' . date('H:i:s') . " ----\r\n";
+        } else {
+            $txt = '---- ' . date('Y/m/d') . " ----\r\n";
+        }
         if ($log->getType() == 'file') {
             global $filename;
             $filename  = $log->getFilename();
@@ -60,14 +77,18 @@ class Log {
     public static function write ($log, $string, $type)
     {
         global $out;
-        $out = date('H:i:s'). ' ' . self::makeMasage($string, $type);
+        if ($log->getTime()) {
+            $out = date('H:i:s'). ' ' . self::makeMasage($string, $type) . "\r\n";
+        } else {
+            $out = self::makeMasage($string, $type) . "\r\n";
+        }
         if ($log->getType() == 'file') {
             $file = fopen($log->getFilename(), 'a');
-            fwrite ($file, $out . "\r\n");
+            fwrite ($file, $out);
         } else  if ($log->getType() == 'html') {
-            print (nl2br($out . "\r\n"));
+            print (nl2br($out));
         } else if ($log->getType() == 'stdout') {
-            printf ("%s\r\n", $out);
+            printf ("%s", $out);
         }  else {
             printf ("[ERROR]: %s is an unknown type", $log->getType());
         }
