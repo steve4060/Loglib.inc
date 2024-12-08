@@ -20,8 +20,10 @@ Log::initLoging($log);
 
 ## Functions of the class Logs
 ```code php
-Log::initLoging(log Object); #is used to make the Log file if it dos not exist already and prints an seperator with the time it was started
-Log::write(log Object, Logtext, Logtype); #is used to write an log masage in format of Time, Type and then the masage
+Log::initLoging(log Object); #is used to make the Log file if it dos not exist already
+                             #and prints an seperator with the time it was started
+Log::write(log Object, Logtext, Logtype); #is used to write an log masage in format of Time,
+                                          #Type and then the masage
 ```
 
 ### Logtypes
