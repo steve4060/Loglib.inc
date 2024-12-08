@@ -5,7 +5,7 @@ For use look at test.php
 ## Use of the Libary
 You can use this Libary to output to a seberate file or print it out.
 You start by making an Logtype Object witch you have to add to all the static Log functions to be able tu  use them.
-### make a log file
+### log file
 ```code php
 include ('loglib.inc');
 $log = new Logtype('file', 'out.log');
@@ -32,7 +32,7 @@ Logtypes are the diverent levels of the loging libary, curently there are he fol
 
 ## Logtype constructor
 ```code php
-$log = new Logtype (type, filename);
+$log = new Logtype (type, time, filename);
 ```
 
 ### tyes
@@ -43,3 +43,6 @@ $log = new Logtype (type, filename);
 
 ### filename
 > The standart is out.log
+
+### time
+> The time variabel is normaly true but can be ste to false.
